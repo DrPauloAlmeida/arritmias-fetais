@@ -1,0 +1,2261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico de Arritmias Fetais | Dr. Paulo Cezar de Almeida</title>
+
+<!-- SEO & GitHub Pages -->
+<meta name="description" content="Fluxograma interativo para diagnóstico e conduta nas arritmias fetais ao ecocardiograma. Baseado na Diretriz Brasileira de Cardiologia Fetal 2019. Por Dr. Paulo Cezar de Almeida, Ecocardiografia Fetal — CRM-AL 6150.">
+<meta name="keywords" content="arritmias fetais, ecocardiografia fetal, TSV fetal, BAVT, flutter atrial fetal, extrassístoles fetais, JET fetal, bradicardia fetal">
+<meta name="author" content="Dr. Paulo Cezar de Almeida">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Diagnóstico de Arritmias Fetais — Fluxograma Interativo v2.0">
+<meta property="og:description" content="Guia clínico interativo para diagnóstico e manejo de arritmias fetais ao ecocardiograma. Dr. Paulo Cezar de Almeida — Ecocardiografia Fetal.">
+<meta property="og:locale" content="pt_BR">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Diagnóstico de Arritmias Fetais v2.0">
+<meta name="twitter:description" content="Fluxograma clínico interativo — Ecocardiografia Fetal. Dr. Paulo Cezar de Almeida.">
+
+<!-- Canonical & theme -->
+<meta name="theme-color" content="#1a4f4a">
+<link rel="canonical" href="https://drpaulocezaralmeida.github.io/arritmias-fetais/"
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap');
+
+  :root {
+    --navy:   #1a4f4a;
+    --blue:   #236b63;
+    --accent: #2a7b70;
+    --teal:   #3d9e8f;
+    --amber:  #d4ac0d;
+    --red:    #c0392b;
+    --green:  #1e8449;
+    --light:  #eaf5f3;
+    --border: #b2d8d3;
+    --muted:  #6b8280;
+    --white:  #ffffff;
+    --bg:     #f0f6f5;
+    --card:   #ffffff;
+    --text:   #1a2e2c;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    background-image:
+      radial-gradient(ellipse at 20% 0%, rgba(42,123,112,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 100%, rgba(26,79,74,0.06) 0%, transparent 60%);
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+    color: white;
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 4px 24px rgba(15,39,68,0.25);
+    position: sticky; top: 0; z-index: 100;
+  }
+  header .icon { font-size: 28px; }
+  header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+  header span {
+    font-size: 11px;
+    opacity: 0.7;
+    display: block;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+  }
+  .header-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  #progress-bar {
+    height: 3px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 2px;
+    width: 140px;
+    overflow: hidden;
+  }
+  #progress-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+  #step-label { font-size: 11px; opacity: 0.7; }
+
+  /* ── BREADCRUMB ── */
+  #breadcrumb {
+    padding: 10px 32px;
+    font-size: 12px;
+    color: var(--muted);
+    background: white;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    min-height: 36px;
+  }
+  .crumb { cursor: pointer; color: var(--accent); }
+  .crumb:hover { text-decoration: underline; }
+  .crumb-sep { opacity: 0.4; }
+
+  /* ── MAIN ── */
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+  }
+
+  /* ── SCREENS ── */
+  .screen { display: none; animation: fadeIn 0.35s ease; }
+  .screen.active { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── HOME GRID ── */
+  .home-intro {
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .home-intro h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .home-intro p {
+    color: var(--muted);
+    font-size: 14px;
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .home-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+  }
+
+  .home-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 24px 20px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .home-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--card-color, var(--accent));
+    border-radius: 16px 16px 0 0;
+  }
+  .home-card:hover {
+    border-color: var(--card-color, var(--accent));
+    box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+    transform: translateY(-3px);
+  }
+  .home-card .card-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .home-card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+  .home-card p {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .home-card .card-arrow {
+    position: absolute;
+    bottom: 16px; right: 16px;
+    font-size: 18px;
+    color: var(--card-color, var(--accent));
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .home-card:hover .card-arrow { opacity: 1; transform: translateX(4px); }
+
+  /* ── QUESTION CARD ── */
+  .q-card {
+    background: white;
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    margin-bottom: 20px;
+  }
+  .q-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--light);
+    color: var(--accent);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+  }
+  .q-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--navy);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .q-hint {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 24px;
+    padding: 10px 14px;
+    background: var(--bg);
+    border-radius: 8px;
+    border-left: 3px solid var(--accent);
+  }
+  .q-hint strong { color: var(--navy); }
+
+  /* ── OPTIONS ── */
+  .options { display: flex; flex-direction: column; gap: 10px; }
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--bg);
+    border: 1.5px solid transparent;
+    border-radius: 12px;
+    padding: 14px 18px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+  }
+  .option:hover {
+    background: var(--light);
+    border-color: var(--accent);
+  }
+  .option .opt-icon {
+    font-size: 22px;
+    min-width: 32px;
+    text-align: center;
+  }
+  .option .opt-text { flex: 1; }
+  .option .opt-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--navy);
+    display: block;
+    margin-bottom: 2px;
+  }
+  .option .opt-sub {
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .option .opt-arrow {
+    font-size: 16px;
+    color: var(--muted);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .option:hover .opt-arrow { opacity: 1; }
+
+  /* ── RESULT ── */
+  .result-card {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+    margin-bottom: 20px;
+  }
+  .result-header {
+    padding: 28px 32px;
+    color: white;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .result-header.green  { background: linear-gradient(135deg, #1a7a4a, var(--green)); }
+  .result-header.yellow { background: linear-gradient(135deg, #b7950b, var(--amber)); }
+  .result-header.red    { background: linear-gradient(135deg, #922b21, var(--red)); }
+  .result-header.blue   { background: linear-gradient(135deg, var(--navy), var(--blue)); }
+  .result-icon { font-size: 44px; line-height: 1; }
+  .result-diagnosis {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    margin-bottom: 4px;
+    line-height: 1.2;
+  }
+  .result-sub { font-size: 13px; opacity: 0.85; line-height: 1.5; }
+  .result-body { background: white; padding: 28px 32px; }
+
+  .result-section {
+    margin-bottom: 22px;
+  }
+  .result-section h4 {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .result-section ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .result-section li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--text);
+  }
+  .result-section li::before {
+    content: '→';
+    color: var(--accent);
+    font-weight: 700;
+    min-width: 16px;
+    margin-top: 1px;
+  }
+
+  .badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .badge.green  { background: #d5f5e3; color: #1e8449; }
+  .badge.yellow { background: #fef9e7; color: #9a7d0a; }
+  .badge.red    { background: #fce4e1; color: #922b21; }
+  .badge.blue   { background: var(--light); color: var(--blue); }
+
+  .alert-box {
+    background: #fce4e1;
+    border: 1.5px solid #f1948a;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #922b21;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    margin-top: 12px;
+  }
+  .alert-box .ai { font-size: 18px; min-width: 22px; }
+
+  .info-box {
+    background: var(--light);
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--blue);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    margin-top: 12px;
+  }
+
+  /* ── INVENTORY TABLE ── */
+  .inv-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 12px;
+  }
+  .inv-table th {
+    background: var(--navy);
+    color: white;
+    padding: 10px 12px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .inv-table td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .inv-table tr:nth-child(even) td { background: var(--bg); }
+  .inv-table .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  /* ── BACK BUTTON ── */
+  .btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    padding: 9px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 20px;
+  }
+  .btn-back:hover { border-color: var(--accent); color: var(--accent); }
+
+  .btn-restart {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--navy);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 16px;
+  }
+  .btn-restart:hover { background: var(--blue); transform: translateY(-1px); }
+
+  /* ── MEDICATION LIST ── */
+  .med-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .version-badge {
+    background: var(--amber);
+    color: var(--navy);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .new-tag {
+    display: inline-block;
+    background: #27ae60;
+    color: white;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    vertical-align: middle;
+    margin-left: 5px;
+  }
+  .hcq-box {
+    background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+    border: 1.5px solid #66bb6a;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin: 12px 0;
+    font-size: 13px;
+  }
+  .hcq-box strong { color: #2e7d32; }
+
+    background: var(--bg);
+    border-radius: 10px;
+    padding: 14px;
+    border: 1px solid var(--border);
+  }
+  .med-card h5 { font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 6px; }
+  .med-card p  { font-size: 12px; color: var(--muted); line-height: 1.5; }
+  .med-card .risk { display: inline-block; margin-top: 6px; padding: 2px 8px; border-radius: 8px; font-size: 11px; font-weight: 600; }
+  .risk.high { background: #fce4e1; color: #922b21; }
+  .risk.mod  { background: #fef9e7; color: #9a7d0a; }
+  .risk.low  { background: #d5f5e3; color: #1e8449; }
+
+  /* ── RESPONSIVE ── */
+  @media(max-width:600px){
+    header { padding: 14px 16px; }
+    header h1 { font-size: 16px; }
+    main { padding: 20px 12px 60px; }
+    .q-card { padding: 20px 16px; }
+    .result-body { padding: 20px 16px; }
+    .result-header { padding: 20px 16px; }
+    .home-grid { grid-template-columns: 1fr; }
+    .inv-table { font-size: 11px; }
+    .inv-table th, .inv-table td { padding: 7px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="data:image/png;base64,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" alt="Dr. Paulo Almeida" style="height:44px;filter:brightness(0) invert(1);opacity:0.92">
+  <div style="border-left:1px solid rgba(255,255,255,0.2);padding-left:14px">
+    <h1>Diagnóstico de Arritmias Fetais <span class="version-badge">v2.0</span></h1>
+    <span>Dr. Paulo Cezar de Almeida · CRM-AL 6150 · RQE 4641 · Ecocardiografia Fetal</span>
+  </div>
+  <div class="header-right">
+    <span id="step-label">Início</span>
+    <div id="progress-bar"><div id="progress-fill"></div></div>
+  </div>
+</header>
+
+<div id="breadcrumb">
+  <span class="crumb" onclick="goHome()">🏠 Início</span>
+</div>
+
+<main>
+
+<!-- ══════════════════════════════════════════════
+     SCREEN: HOME
+══════════════════════════════════════════════ -->
+<div id="screen-home" class="screen active">
+  <div class="home-intro">
+    <h2>Por onde deseja iniciar?</h2>
+    <p>Selecione o contexto clínico mais relevante para conduzir o raciocínio diagnóstico da arritmia fetal.</p>
+    <p style="margin-top:8px;font-size:11px;color:var(--muted)">
+      Desenvolvido por <strong style="color:var(--accent)">Dr. Paulo Cezar de Almeida</strong> · CRM-AL 6150 · RQE 4641 · Ecocardiografia Fetal<br>
+      <strong style="color:var(--accent)">@drpaulocezaralmeida</strong> · Baseado na Diretriz Brasileira de Cardiologia Fetal – 2019<br>
+      <span style="background:#27ae60;color:white;padding:1px 8px;border-radius:8px;font-size:10px;font-weight:700">v2.0</span>
+      Atualizado com: JET · Síndrome de Costello · Hidroxicloroquina no BAV · Taquicardia Sinusal Inapropriada
+    </p>
+  </div>
+  <div class="home-grid">
+    <div class="home-card" style="--card-color:#2e86ab" onclick="startEco()">
+      <span class="card-icon">📡</span>
+      <h3>Achados Ecocardiográficos</h3>
+      <p>Frequência cardíaca fetal, ritmo, relação A:V, modo M, Doppler</p>
+      <span class="card-arrow">→</span>
+    </div>
+    <div class="home-card" style="--card-color:#8e44ad" onclick="startMaterna()">
+      <span class="card-icon">🩺</span>
+      <h3>Patologia Materna</h3>
+      <p>Lúpus, Sjögren, diabetes, doenças do colágeno, anticorpos anti-Ro/La</p>
+      <span class="card-arrow">→</span>
+    </div>
+    <div class="home-card" style="--card-color:#e67e22" onclick="startFetal()">
+      <span class="card-icon">🤰</span>
+      <h3>Patologia Obstétrica/Fetal</h3>
+      <p>Hidropisia, CIUR, infecção, tumores, cardiopatia estrutural</p>
+      <span class="card-arrow">→</span>
+    </div>
+    <div class="home-card" style="--card-color:#c0392b" onclick="startMed()">
+      <span class="card-icon">💊</span>
+      <h3>Uso de Medicamentos</h3>
+      <p>AINEs, betabloqueadores, antiarrítmicos, corticoides, psicotrópicos</p>
+      <span class="card-arrow">→</span>
+    </div>
+    <div class="home-card" style="--card-color:#17a589" onclick="startDieta()">
+      <span class="card-icon">🍵</span>
+      <h3>Dieta e Substâncias</h3>
+      <p>Polifenóis, cafeína, energéticos, chás, chocolate, cafeína</p>
+      <span class="card-arrow">→</span>
+    </div>
+    <div class="home-card" style="--card-color:#1a5276" onclick="showInventario()">
+      <span class="card-icon">📋</span>
+      <h3>Inventário de Achados</h3>
+      <p>Tabela completa de padrões ecocardiográficos por diagnóstico</p>
+      <span class="card-arrow">→</span>
+    </div>
+    <div class="home-card" style="--card-color:#6c3483" onclick="go('s-costello')">
+      <span class="card-icon">🧬</span>
+      <h3>Síndrome de Costello <span class="new-tag">novo</span></h3>
+      <p>Taquicardia atrial multifocal + cardiomiopatia hipertrófica — rassopatia HRAS</p>
+      <span class="card-arrow">→</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     ECO PATH
+══════════════════════════════════════════════ -->
+
+<!-- Q1: FC fetal -->
+<div id="screen-q1" class="screen">
+  <button class="btn-back" onclick="goHome()">← Voltar</button>
+  <div class="q-card">
+    <span class="q-tag">📡 Achados Ecocardiográficos · Passo 1</span>
+    <div class="q-title">Qual é a frequência cardíaca fetal?</div>
+    <div class="q-hint">
+      <strong>Dica prática:</strong> Meça a FC atrial e ventricular separadamente. Essa distinção é fundamental — são dados diferentes. Use o Doppler de cordão para triagem inicial, mas confirme sempre com Modo M ou Doppler pulsátil.
+    </div>
+    <div class="options">
+      <div class="option" onclick="go('q-bradi-tipo')">
+        <span class="opt-icon">🔵</span>
+        <div class="opt-text">
+          <span class="opt-label">FC &lt; 110–120 bpm</span>
+          <span class="opt-sub">Bradicardia fetal</span>
+        </div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('q-irreg-intro')">
+        <span class="opt-icon">🟡</span>
+        <div class="opt-text">
+          <span class="opt-label">FC 110–180 bpm, porém IRREGULAR</span>
+          <span class="opt-sub">Ritmo irregular — extrassístoles ou bigeminismo</span>
+        </div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('q-taqi-fc')">
+        <span class="opt-icon">🔴</span>
+        <div class="opt-text">
+          <span class="opt-label">FC &gt; 180 bpm</span>
+          <span class="opt-sub">Taquicardia fetal — avaliar mecanismo</span>
+        </div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('q-normal')">
+        <span class="opt-icon">🟢</span>
+        <div class="opt-text">
+          <span class="opt-label">FC 120–160 bpm, regular</span>
+          <span class="opt-sub">Dentro dos parâmetros normais</span>
+        </div><span class="opt-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Q: Normal -->
+<div id="screen-q-normal" class="screen">
+  <button class="btn-back" onclick="go('q1')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header green">
+      <span class="result-icon">✅</span>
+      <div>
+        <div class="result-diagnosis">Ritmo Sinusal Normal</div>
+        <div class="result-sub">FC 120–160 bpm, regular, condução AV 1:1</div>
+      </div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row">
+        <span class="badge green">Benigno</span>
+        <span class="badge blue">Sem tratamento</span>
+        <span class="badge blue">Seguimento obstétrico habitual</span>
+      </div>
+      <div class="result-section">
+        <h4>Parâmetros dentro da normalidade</h4>
+        <ul>
+          <li>FC fetal normal varia entre 120–180 bpm (referência usual) ou 100–180 bpm (alguns autores)</li>
+          <li>No 1º trimestre: 6 semanas ~125 bpm; 9 semanas ~175 bpm; 14 semanas ~160 bpm</li>
+          <li>Condução AV 1:1, regular, PR mecânico 90–150 ms</li>
+        </ul>
+      </div>
+      <div class="info-box">
+        <span class="ai">ℹ️</span>
+        <span><strong>Atenção no 1º trimestre:</strong> FC &gt; 170 bpm entre 11–14 semanas pode ser fator de risco independente para cromossomopatias no rastreio genético.</span>
+      </div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<!-- ── BRADICARDIA ── -->
+<div id="screen-q-bradi-tipo" class="screen">
+  <button class="btn-back" onclick="go('q1')">← Voltar</button>
+  <div class="q-card">
+    <span class="q-tag">🔵 Bradicardia · Passo 2</span>
+    <div class="q-title">A bradicardia é transitória ou persistente?</div>
+    <div class="q-hint">
+      <strong>Dica:</strong> Comprima suavemente o transdutor e mude a posição. Observe por 2–3 minutos antes de concluir. Bradicardia transitória que retorna espontaneamente ao normal é quase sempre fisiológica.
+    </div>
+    <div class="options">
+      <div class="option" onclick="go('r-bradi-fisio')">
+        <span class="opt-icon">⚡</span>
+        <div class="opt-text">
+          <span class="opt-label">Transitória — normaliza espontaneamente</span>
+          <span class="opt-sub">Dura segundos a poucos minutos, sem intervenção</span>
+        </div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('q-bradi-av')">
+        <span class="opt-icon">⏱️</span>
+        <div class="opt-text">
+          <span class="opt-label">Persistente — mantida durante todo o exame</span>
+          <span class="opt-sub">Analisar relação AV para classificar</span>
+        </div><span class="opt-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="screen-r-bradi-fisio" class="screen">
+  <button class="btn-back" onclick="go('q-bradi-tipo')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header green">
+      <span class="result-icon">💚</span>
+      <div>
+        <div class="result-diagnosis">Bradicardia Fisiológica Transitória</div>
+        <div class="result-sub">Fenômeno fisiológico, sem repercussão — tônus vagal exacerbado</div>
+      </div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row"><span class="badge green">Benigno</span><span class="badge blue">Sem tratamento</span></div>
+      <div class="result-section">
+        <h4>Características</h4>
+        <ul>
+          <li>Mais comum no 2º trimestre</li>
+          <li>Expressão de tônus vagal exacerbado — fenômeno fisiológico normal</li>
+          <li>Retorna espontaneamente ao ritmo sinusal normal</li>
+          <li>Não requer nenhuma intervenção diagnóstica ou terapêutica</li>
+        </ul>
+      </div>
+      <div class="result-section">
+        <h4>Conduta</h4>
+        <ul>
+          <li>Tranquilizar a gestante</li>
+          <li>Seguimento pré-natal habitual</li>
+          <li>Não solicitar exames adicionais por esse achado isolado</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<div id="screen-q-bradi-av" class="screen">
+  <button class="btn-back" onclick="go('q-bradi-tipo')">← Voltar</button>
+  <div class="q-card">
+    <span class="q-tag">🔵 Bradicardia · Passo 3</span>
+    <div class="q-title">Qual é a relação atrioventricular?</div>
+    <div class="q-hint">
+      <strong>Técnica:</strong> Posicione o cursor do Modo M atravessando a parede atrial posterior e a parede ventricular simultaneamente. Use a maior frequência de varredura disponível (≥ 83 Hz). Meça os intervalos A-A — são iguais ou desiguais?
+    </div>
+    <div class="options">
+      <div class="option" onclick="go('q-bradi-sinusal')">
+        <span class="opt-icon">〰️</span>
+        <div class="opt-text">
+          <span class="opt-label">A:V 1:1 — mesma frequência</span>
+          <span class="opt-sub">Átrio e ventrículo batem juntos, ambos lentos</span>
+        </div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('q-bradi-bigem')">
+        <span class="opt-icon">〽️</span>
+        <div class="opt-text">
+          <span class="opt-label">FC ventricular ~65–75 bpm, padrão PAREADO</span>
+          <span class="opt-sub">Intervalo A-A desigual — pares de contrações atriais</span>
+        </div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('q-bradi-bav21')">
+        <span class="opt-icon">2️⃣</span>
+        <div class="opt-text">
+          <span class="opt-label">A &gt; V, relação 2:1 — A-A IGUAL e regular</span>
+          <span class="opt-sub">Duas contrações atriais para cada ventricular, átrio regular</span>
+        </div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('q-bavt')">
+        <span class="opt-icon">🔴</span>
+        <div class="opt-text">
+          <span class="opt-label">Dissociação AV completa — A e V sem relação</span>
+          <span class="opt-sub">Átrio ~100–150 bpm regular; ventrículo ~40–60 bpm, independentes</span>
+        </div><span class="opt-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bradicardia sinusal -->
+<div id="screen-q-bradi-sinusal" class="screen">
+  <button class="btn-back" onclick="go('q-bradi-av')">← Voltar</button>
+  <div class="q-card">
+    <span class="q-tag">🔵 Bradicardia Sinusal · Passo 4</span>
+    <div class="q-title">Existe causa identificável?</div>
+    <div class="options">
+      <div class="option" onclick="go('r-bradi-sin-causa')">
+        <span class="opt-icon">⚠️</span>
+        <div class="opt-text">
+          <span class="opt-label">Sim — compressão de cordão, hipotensão materna, medicação</span>
+          <span class="opt-sub">Causa identificada e reversível</span>
+        </div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('r-bradi-sin-persist')">
+        <span class="opt-icon">🔴</span>
+        <div class="opt-text">
+          <span class="opt-label">Não — bradicardia persistente sem causa aparente</span>
+          <span class="opt-sub">Sem relação com posição, compressão ou medicação</span>
+        </div><span class="opt-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="screen-r-bradi-sin-causa" class="screen">
+  <button class="btn-back" onclick="go('q-bradi-sinusal')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header yellow">
+      <span class="result-icon">⚠️</span>
+      <div>
+        <div class="result-diagnosis">Bradicardia Sinusal Secundária</div>
+        <div class="result-sub">A:V 1:1, FC &lt; 110 bpm por causa identificável</div>
+      </div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row"><span class="badge yellow">Monitorar</span><span class="badge blue">Tratar causa</span></div>
+      <div class="result-section">
+        <h4>Causas comuns</h4>
+        <ul>
+          <li>Compressão do cordão umbilical pelo transdutor ou posição fetal</li>
+          <li>Hipotensão materna (decúbito dorsal, bloqueio anestésico)</li>
+          <li>Medicação materna: propranolol, betabloqueadores, sedativos</li>
+          <li>Convulsão materna</li>
+          <li>Hipóxia fetal transitória</li>
+        </ul>
+      </div>
+      <div class="result-section">
+        <h4>Conduta</h4>
+        <ul>
+          <li>Remover/tratar a causa identificada</li>
+          <li>CTG para avaliação do bem-estar fetal</li>
+          <li>Se persistir após remoção da causa → investigar sofrimento fetal</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<div id="screen-r-bradi-sin-persist" class="screen">
+  <button class="btn-back" onclick="go('q-bradi-sinusal')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header red">
+      <span class="result-icon">🚨</span>
+      <div>
+        <div class="result-diagnosis">Bradicardia Sinusal Persistente</div>
+        <div class="result-sub">Investigar sofrimento fetal, disfunção sinusal ou SQTL</div>
+      </div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row"><span class="badge red">Urgente</span><span class="badge yellow">Investigar</span></div>
+      <div class="result-section">
+        <h4>Diagnósticos a considerar</h4>
+        <ul>
+          <li>Sofrimento fetal extremo (pré-óbito) — padrão terminal de CTG</li>
+          <li>Doença do nó sinusal</li>
+          <li>Síndrome do QT longo fetal (bradicardia pode ser única manifestação)</li>
+          <li>Infecção (CMV, parvovírus B19)</li>
+        </ul>
+      </div>
+      <div class="result-section">
+        <h4>Conduta urgente</h4>
+        <ul>
+          <li>CTG imediato para avaliação do bem-estar fetal</li>
+          <li>Perfil biofísico fetal</li>
+          <li>Investigar história familiar de SQTL, morte súbita, síncope</li>
+          <li>Encaminhar para centro de referência em cardiologia fetal</li>
+        </ul>
+      </div>
+      <div class="alert-box">
+        <span class="ai">🚨</span>
+        <span><strong>Atenção:</strong> Bradicardia sinusal persistente sem causa aparente a 23 semanas justifica investigação urgente. O padrão terminal de CTG é caracterizado por variabilidade mínima/ausente + desacelerações recorrentes.</span>
+      </div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<!-- Bigeminismo atrial bloqueado -->
+<div id="screen-q-bradi-bigem" class="screen">
+  <button class="btn-back" onclick="go('q-bradi-av')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header yellow">
+      <span class="result-icon">〽️</span>
+      <div>
+        <div class="result-diagnosis">Bigeminismo Atrial Bloqueado</div>
+        <div class="result-sub">ESA bigeminadas não conduzidas — A-A desigual (pareado)</div>
+      </div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row">
+        <span class="badge yellow">Benigno com vigilância</span>
+        <span class="badge blue">10–13% risco de TSV</span>
+      </div>
+      <div class="result-section">
+        <h4>Dado diagnóstico crítico</h4>
+        <ul>
+          <li><strong>A-A DESIGUAL</strong> — pares de contrações atriais (curto-longo-curto-longo) = confirma bigeminismo</li>
+          <li><strong>A-A IGUAL</strong> = seria BAV 2:1 — diagnóstico completamente diferente!</li>
+          <li>FC ventricular ~65–75 bpm — metade da FC atrial efetiva</li>
+          <li>Frequentemente confundido com BAVT ou sofrimento fetal agudo</li>
+        </ul>
+      </div>
+      <div class="result-section">
+        <h4>Conduta</h4>
+        <ul>
+          <li>Não tratar farmacologicamente — arritmia benigna</li>
+          <li>ECO semanal pelo risco de 10–13% de evolução para TSV</li>
+          <li>Ausculta semanal com sonar pelo obstetra</li>
+          <li>Evitar cafeína e estimulantes maternos</li>
+          <li>Orientar sobre sinais de alerta: FC regular e acelerada no sonar</li>
+        </ul>
+      </div>
+      <div class="alert-box">
+        <span class="ai">⚠️</span>
+        <span><strong>Armadilha clássica:</strong> FC ventricular ~70 bpm simula bradicardia grave ou sofrimento fetal. O Modo M com A-A desigual/pareado desfaz a armadilha. Nunca antecipar parto por esse diagnóstico sem confirmar o padrão atrial.</span>
+      </div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<!-- BAV 2:1 -->
+<div id="screen-q-bradi-bav21" class="screen">
+  <button class="btn-back" onclick="go('q-bradi-av')">← Voltar</button>
+  <div class="q-card">
+    <span class="q-tag">🔵 BAV 2:1 · Avaliar etiologia</span>
+    <div class="q-title">A mãe tem anticorpos anti-SSA/Ro ou anti-SSB/La positivos?</div>
+    <div class="q-hint"><strong>Se ainda não dosado:</strong> Solicitar urgentemente. Resultado positivo muda toda a conduta e o nível de urgência do seguimento.</div>
+    <div class="options">
+      <div class="option" onclick="go('r-bav2-autoimune')">
+        <span class="opt-icon">🔬</span>
+        <div class="opt-text"><span class="opt-label">Sim — anti-Ro/La positivos</span><span class="opt-sub">Ou doença do colágeno conhecida (LES, Sjögren)</span></div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('r-bav2-negativo')">
+        <span class="opt-icon">❓</span>
+        <div class="opt-text"><span class="opt-label">Não dosado ou negativo</span><span class="opt-sub">Sem diagnóstico autoimune materno conhecido</span></div><span class="opt-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="screen-r-bav2-autoimune" class="screen">
+  <button class="btn-back" onclick="go('q-bradi-bav21')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header red">
+      <span class="result-icon">🔬</span>
+      <div>
+        <div class="result-diagnosis">BAV 2º Grau 2:1 — Etiologia Autoimune</div>
+        <div class="result-sub">Anti-Ro/La positivo + bloqueio AV — período crítico 18–26 semanas</div>
+      </div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row"><span class="badge red">Alta prioridade</span><span class="badge yellow">Encaminhar</span><span class="badge blue">Monitorar PR mecânico</span></div>
+      <div class="result-section">
+        <h4>Por que é urgente</h4>
+        <ul>
+          <li>Progressão para BAVT pode ocorrer em horas</li>
+          <li>A janela de intervenção após BAV 1º grau é &lt; 24 horas</li>
+          <li>Monitoramento semanal raramente detecta a tempo</li>
+          <li>Período crítico: 18–26 semanas — pico da agressão autoimune ao sistema de condução</li>
+        </ul>
+      </div>
+      <div class="result-section">
+        <h4>O que monitorar semanalmente</h4>
+        <ul>
+          <li>PR mecânico (Doppler mitral-aórtico): está subindo? Tendência importa mais que valor absoluto</li>
+          <li>Ecogenicidade endocárdica aumentada — sinal de inflamação ativa</li>
+          <li>Insuficiência tricúspide nova</li>
+          <li>Disfunção ventricular incipiente</li>
+          <li>Derrame pericárdico</li>
+        </ul>
+      </div>
+      <div class="result-section">
+        <h4>Conduta</h4>
+        <ul>
+          <li>Encaminhar para centro terciário de cardiologia fetal</li>
+          <li>Se sinais de inflamação ativa: discutir dexametasona 4–6 mg/dia VO materno</li>
+          <li>Se PR mecânico aumentando progressivamente: urgência máxima</li>
+          <li>ECO a cada 48–72h enquanto houver progressão</li>
+        </ul>
+      </div>
+      <div class="hcq-box">
+        <strong>💊 Hidroxicloroquina — Prevenção EULAR 2007 <span class="new-tag">v2.0</span></strong><br>
+        A EULAR recomenda desde 2007 o uso de <strong>hidroxicloroquina durante toda a gestação</strong> em pacientes com anti-SSA e/ou anti-SSB positivos, mesmo assintomáticas, por reduzir o risco de BAV fetal. Nos fetos com BAV 1–2º grau (não completo): considerar dexametasona 4–8 mg VO materna reduzindo para 2 mg/dia após 30 semanas.
+      </div>
+      <div class="alert-box">
+        <span class="ai">🚨</span>
+        <span><strong>PR mecânico progressivamente aumentando:</strong> Encaminhar HOJE para centro terciário. Não esperar o próximo exame semanal. A janela de tratamento é menor que 24 horas.</span>
+      </div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<div id="screen-r-bav2-negativo" class="screen">
+  <button class="btn-back" onclick="go('q-bradi-bav21')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header yellow">
+      <span class="result-icon">❓</span>
+      <div>
+        <div class="result-diagnosis">BAV 2º Grau 2:1 — Etiologia a Investigar</div>
+        <div class="result-sub">Excluir autoimune, canalopatia, cardiopatia estrutural</div>
+      </div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row"><span class="badge yellow">Investigar</span><span class="badge blue">Encaminhar</span></div>
+      <div class="result-section">
+        <h4>Diagnósticos a considerar</h4>
+        <ul>
+          <li>Anti-Ro/La ainda não dosado → solicitar urgentemente</li>
+          <li>Cardiopatia estrutural (isomerismo atrial, TCGA) → eco estrutural completo</li>
+          <li>Síndrome do QT longo (canalopatia) → história familiar; MCGf se disponível</li>
+          <li>Idiopático — possível dominância parassimpática (pode regredir espontaneamente)</li>
+        </ul>
+      </div>
+      <div class="result-section">
+        <h4>Conduta</h4>
+        <ul>
+          <li>Solicitar anti-SSA/Ro e anti-SSB/La urgente se ainda não dosado</li>
+          <li>Eco estrutural completo (isomerismo, TCGA)</li>
+          <li>Seguimento semanal com Modo M e Doppler mitral-aórtico</li>
+          <li>Encaminhar para centro de referência em cardiologia fetal</li>
+        </ul>
+      </div>
+      <div class="info-box">
+        <span class="ai">ℹ️</span>
+        <span>BAV 2:1 com anti-Ro negativo tem maior chance de regressão espontânea (possível dominância parassimpática). Mesmo assim, manter vigilância até resolução documentada.</span>
+      </div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<!-- BAVT -->
+<div id="screen-q-bavt" class="screen">
+  <button class="btn-back" onclick="go('q-bradi-av')">← Voltar</button>
+  <div class="q-card">
+    <span class="q-tag">🔴 BAVT · Avaliar gravidade</span>
+    <div class="q-title">Qual a frequência ventricular e há hidropisia?</div>
+    <div class="options">
+      <div class="option" onclick="go('r-bavt-bom')">
+        <span class="opt-icon">🟢</span>
+        <div class="opt-text"><span class="opt-label">FC ventricular &gt; 55 bpm + SEM hidropisia</span><span class="opt-sub">Feto estável hemodinamicamente</span></div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('r-bavt-medio')">
+        <span class="opt-icon">🟡</span>
+        <div class="opt-text"><span class="opt-label">FC ventricular 50–55 bpm ± disfunção incipiente</span><span class="opt-sub">Limiar de alarme — sem hidropisia ainda</span></div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('r-bavt-grave')">
+        <span class="opt-icon">🔴</span>
+        <div class="opt-text"><span class="opt-label">FC ventricular &lt; 50 bpm e/ou hidropisia presente</span><span class="opt-sub">Comprometimento hemodinâmico grave</span></div><span class="opt-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="screen-r-bavt-bom" class="screen">
+  <button class="btn-back" onclick="go('q-bavt')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header blue">
+      <span class="result-icon">💙</span>
+      <div><div class="result-diagnosis">BAVT — Prognóstico Favorável</div><div class="result-sub">FC &gt; 55 bpm, sem hidropisia, feto estável</div></div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row"><span class="badge blue">Monitorar</span><span class="badge green">Sem urgência imediata</span><span class="badge yellow">Encaminhar</span></div>
+      <div class="result-section">
+        <h4>Conduta</h4>
+        <ul>
+          <li>ECO semanal — monitorar FC, função ventricular, hidropisia</li>
+          <li>Solicitar anti-SSA/Ro e anti-SSB/La se ainda não dosados</li>
+          <li>Encaminhar para centro de cardiologia fetal (nível 2–3)</li>
+          <li>Planejar parto próximo ao termo com marca-passo neonatal disponível</li>
+          <li>50–70% dos neonatos necessitarão marca-passo pós-natal</li>
+        </ul>
+      </div>
+      <div class="info-box"><span class="ai">ℹ️</span><span>Não escrever "fibroelastose endocárdica" no laudo — escrever apenas "ecogenicidade endocárdica aumentada" (fibroelastose é diagnóstico histológico).</span></div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<div id="screen-r-bavt-medio" class="screen">
+  <button class="btn-back" onclick="go('q-bavt')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header yellow">
+      <span class="result-icon">⚠️</span>
+      <div><div class="result-diagnosis">BAVT — Limiar de Alerta</div><div class="result-sub">FC 50–55 bpm — iniciar salbutamol, vigilância intensiva</div></div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row"><span class="badge yellow">Tratamento</span><span class="badge red">Encaminhar urgente</span></div>
+      <div class="result-section">
+        <h4>Tratamento</h4>
+        <ul>
+          <li>Salbutamol VO: iniciar 4 mg 8/8h por 2 dias → 4 mg 6/6h (máx. 16 mg/dia)</li>
+          <li>Eleva FC ventricular em 5–10 bpm — pequeno mas pode evitar hidropisia</li>
+          <li>Se anti-Ro positivo + sinais de inflamação: discutir dexametasona em centro especializado</li>
+          <li>ECO a cada 48–72h</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<div id="screen-r-bavt-grave" class="screen">
+  <button class="btn-back" onclick="go('q-bavt')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header red">
+      <span class="result-icon">🚨</span>
+      <div><div class="result-diagnosis">BAVT — EMERGÊNCIA</div><div class="result-sub">FC &lt; 50 bpm e/ou hidropisia — risco de óbito fetal</div></div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row"><span class="badge red">Emergência</span><span class="badge red">Internação imediata</span></div>
+      <div class="result-section">
+        <h4>Conduta imediata</h4>
+        <ul>
+          <li>Encaminhar IMEDIATAMENTE para centro terciário (nível 3)</li>
+          <li>Salbutamol VO: 4 mg 6/6h (máx. 16 mg/dia)</li>
+          <li>Se anti-Ro+ + sinais inflamação: dexametasona + IVIG (decisão do centro terciário)</li>
+          <li>Se ≥ 34 semanas + hidropisia refratária: discutir parto + marca-passo neonatal imediato</li>
+          <li>Se &lt; 26 semanas + FC &lt; 45 bpm + hidrópico: prognóstico muito reservado (~75% mortalidade); discutir com família</li>
+        </ul>
+      </div>
+      <div class="alert-box"><span class="ai">🚨</span><span><strong>Mortalidade:</strong> BAVT + hidropisia precoce (&lt; 26 semanas) tem mortalidade fetal+neonatal próxima de 75%. Aconselhamento familiar especializado é obrigatório.</span></div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<!-- ── RITMO IRREGULAR ── -->
+<div id="screen-q-irreg-intro" class="screen">
+  <button class="btn-back" onclick="go('q1')">← Voltar</button>
+  <div class="q-card">
+    <span class="q-tag">🟡 Ritmo Irregular · Passo 2</span>
+    <div class="q-title">Qual o padrão no Doppler de cordão umbilical?</div>
+    <div class="q-hint"><strong>Regra de ouro:</strong> Pausa pura (sem deflexão) = ESA bloqueada. Curva pequena + pausa = fazer Modo M na parede atrial e medir a pausa.</div>
+    <div class="options">
+      <div class="option" onclick="go('r-esa-bloqueada')">
+        <span class="opt-icon">⏸️</span>
+        <div class="opt-text"><span class="opt-label">Pausa PURA — sem deflexão, sem curva</span><span class="opt-sub">Apenas pausa no cordão, sem batimento precedente</span></div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('q-irreg-pausa')">
+        <span class="opt-icon">📉</span>
+        <div class="opt-text"><span class="opt-label">Curva pequena + pausa</span><span class="opt-sub">Deflexão antes da pausa — pode ser ESA conduzida ou ESV</span></div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('q-irreg-bigem')">
+        <span class="opt-icon">〽️</span>
+        <div class="opt-text"><span class="opt-label">Padrão bigeminado regular</span><span class="opt-sub">Alternância sistemática: normal-extrassístole-normal...</span></div><span class="opt-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="screen-r-esa-bloqueada" class="screen">
+  <button class="btn-back" onclick="go('q-irreg-intro')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header green">
+      <span class="result-icon">✅</span>
+      <div><div class="result-diagnosis">Extrassístole Atrial Bloqueada (ESA)</div><div class="result-sub">ESA isolada não conduzida — pausa pura no Doppler de cordão</div></div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row"><span class="badge green">Benigna</span><span class="badge blue">Sem tratamento</span></div>
+      <div class="result-section">
+        <h4>Conduta</h4>
+        <ul>
+          <li>Evitar cafeína, energéticos e estimulantes maternos</li>
+          <li>Ausculta semanal pelo obstetra</li>
+          <li>ECO de controle conforme frequência das extrassístoles</li>
+          <li>Orientar sobre risco baixo (~1%) de evolução para TSV</li>
+          <li>Afastar cardiopatia estrutural (raro)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<div id="screen-q-irreg-pausa" class="screen">
+  <button class="btn-back" onclick="go('q-irreg-intro')">← Voltar</button>
+  <div class="q-card">
+    <span class="q-tag">🟡 Ritmo Irregular · Passo 3</span>
+    <div class="q-title">Meça a pausa pós-extrassistólica. Qual o resultado?</div>
+    <div class="q-hint"><strong>Como medir:</strong> Compare a duração da pausa com o intervalo de dois ciclos normais consecutivos (RR × 2). Pausa &lt; 2 ciclos = não compensatória. Pausa &gt; 2 ciclos = compensatória.</div>
+    <div class="options">
+      <div class="option" onclick="go('r-esa-conduzida')">
+        <span class="opt-icon">🔵</span>
+        <div class="opt-text"><span class="opt-label">Pausa NÃO compensatória — &lt; 2 ciclos normais</span><span class="opt-sub">Pausa curta, menor que dois batimentos normais</span></div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('r-esv')">
+        <span class="opt-icon">🟠</span>
+        <div class="opt-text"><span class="opt-label">Pausa COMPENSATÓRIA — &gt; 2 ciclos normais</span><span class="opt-sub">Pausa longa, maior que dois batimentos normais</span></div><span class="opt-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="screen-r-esa-conduzida" class="screen">
+  <button class="btn-back" onclick="go('q-irreg-pausa')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header green">
+      <span class="result-icon">✅</span>
+      <div><div class="result-diagnosis">Extrassístole Atrial Conduzida (ESA)</div><div class="result-sub">Pausa não compensatória — origem atrial confirmada</div></div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row"><span class="badge green">Benigna em geral</span><span class="badge yellow">~1% risco de TSV</span></div>
+      <div class="result-section">
+        <h4>Classificação e conduta por frequência</h4>
+        <ul>
+          <li><strong>Isoladas/esporádicas:</strong> ausculta semanal; evitar cafeína</li>
+          <li><strong>Frequentes sem padrão:</strong> ECO semanal; evitar cafeína</li>
+          <li><strong>Bigeminismo conduzido:</strong> ECO semanal; 10–13% risco de TSV</li>
+          <li><strong>Frequentes flutuando para bi/trigeminismo:</strong> ECO semanal + CTG a cada 2–3 dias</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<div id="screen-r-esv" class="screen">
+  <button class="btn-back" onclick="go('q-irreg-pausa')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header yellow">
+      <span class="result-icon">🟠</span>
+      <div><div class="result-diagnosis">Extrassístole Ventricular (ESV)</div><div class="result-sub">Pausa compensatória — origem ventricular confirmada</div></div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row"><span class="badge yellow">Monitorar</span><span class="badge blue">Investigar causas</span></div>
+      <div class="result-section">
+        <h4>Como confirmar</h4>
+        <ul>
+          <li>Modo M: contração ventricular precoce SEM contração atrial precedente</li>
+          <li>Atividade atrial permanece regular (o nó sinusal não é afetado)</li>
+          <li>Pausa &gt; 2 ciclos normais — o ventrículo leva mais tempo para repolarizar</li>
+        </ul>
+      </div>
+      <div class="result-section">
+        <h4>Conduta</h4>
+        <ul>
+          <li>ECO semanal</li>
+          <li>Investigar causas secundárias: miocardite, tumor cardíaco, aneurisma ventricular</li>
+          <li>Afastar cardiopatia estrutural</li>
+          <li>Se frequentes ou associadas a TV: encaminhar para centro terciário</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<div id="screen-q-irreg-bigem" class="screen">
+  <button class="btn-back" onclick="go('q-irreg-intro')">← Voltar</button>
+  <div class="q-card">
+    <span class="q-tag">🟡 Bigeminismo · Passo 3</span>
+    <div class="q-title">No Modo M da parede atrial: o intervalo A-A é igual ou desigual?</div>
+    <div class="q-hint"><strong>Dado decisivo:</strong> Este é o diferencial mais importante da arritmia fetal. Use a maior frequência de varredura e maximize o ganho para visualizar a atividade atrial claramente.</div>
+    <div class="options">
+      <div class="option" onclick="go('r-bigem-atrial')">
+        <span class="opt-icon">〽️</span>
+        <div class="opt-text"><span class="opt-label">A-A DESIGUAL — intervalo atrial pareado (curto-longo)</span><span class="opt-sub">Atividade atrial em pares, não uniformemente espaçada</span></div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('r-bigem-ventr')">
+        <span class="opt-icon">〰️</span>
+        <div class="opt-text"><span class="opt-label">A-A IGUAL — atividade atrial regular e uniforme</span><span class="opt-sub">Átrios batem em ritmo sinusal regular; bigeminismo é ventricular</span></div><span class="opt-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="screen-r-bigem-atrial" class="screen">
+  <button class="btn-back" onclick="go('q-irreg-bigem')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header yellow">
+      <span class="result-icon">〽️</span>
+      <div><div class="result-diagnosis">Bigeminismo Atrial</div><div class="result-sub">Conduzido ou bloqueado — A-A desigual confirma origem atrial</div></div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row"><span class="badge yellow">Vigilância</span><span class="badge blue">10–13% risco TSV (bloqueado)</span></div>
+      <div class="result-section">
+        <h4>Conduta</h4>
+        <ul>
+          <li>Não tratar — arritmia benigna</li>
+          <li>ECO semanal pelo risco de 10–13% de evolução para TSV (especialmente no bloqueado)</li>
+          <li>Evitar cafeína e estimulantes</li>
+          <li>Orientar a gestante sobre sinais de alerta</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<div id="screen-r-bigem-ventr" class="screen">
+  <button class="btn-back" onclick="go('q-irreg-bigem')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header yellow">
+      <span class="result-icon">🟠</span>
+      <div><div class="result-diagnosis">Bigeminismo Ventricular</div><div class="result-sub">A-A regular — origem ventricular do bigeminismo</div></div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row"><span class="badge yellow">Monitorar</span><span class="badge blue">ECO semanal</span></div>
+      <div class="result-section"><h4>Conduta</h4><ul>
+        <li>ECO semanal</li>
+        <li>Investigar causas secundárias (tumor, miocardite)</li>
+        <li>Afastar cardiopatia estrutural</li>
+      </ul></div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<!-- ── TAQUICARDIA ── -->
+<div id="screen-q-taqi-fc" class="screen">
+  <button class="btn-back" onclick="go('q1')">← Voltar</button>
+  <div class="q-card">
+    <span class="q-tag">🔴 Taquicardia · Passo 2</span>
+    <div class="q-title">Qual a frequência cardíaca e a relação A:V?</div>
+    <div class="q-hint"><strong>Técnica:</strong> Meça FC atrial e ventricular SEPARADAMENTE no Modo M ou Doppler pulsátil. A relação A:V e a frequência são os dados que classificam a taquicardia.</div>
+    <div class="options">
+      <div class="option" onclick="go('r-taq-sinusal')">
+        <span class="opt-icon">📈</span>
+        <div class="opt-text"><span class="opt-label">FC 160–200 bpm, A=V, 1:1, início gradual</span><span class="opt-sub">Taquicardia sinusal — causa subjacente</span></div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('q-tsv-va')">
+        <span class="opt-icon">⚡</span>
+        <div class="opt-text"><span class="opt-label">FC &gt; 200 bpm, A=V, 1:1, início ABRUPTO</span><span class="opt-sub">TSV — avaliar intervalo VA para mecanismo</span></div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('q-flutter')">
+        <span class="opt-icon">〰️</span>
+        <div class="opt-text"><span class="opt-label">FC atrial &gt; 300 bpm, A &gt; V, relação 2:1 / 3:1</span><span class="opt-sub">Flutter atrial — frequência atrial muito alta</span></div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('q-tv-jt')">
+        <span class="opt-icon">🔴</span>
+        <div class="opt-text"><span class="opt-label">FC ventricular &gt; FC atrial, A &lt; V, dissociação AV</span><span class="opt-sub">TV ou JET — ventrículo mais rápido que átrio</span></div><span class="opt-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="screen-r-taq-sinusal" class="screen">
+  <button class="btn-back" onclick="go('q-taqi-fc')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header yellow">
+      <span class="result-icon">📈</span>
+      <div><div class="result-diagnosis">Taquicardia Sinusal</div><div class="result-sub">Investigar e tratar a causa — não é arritmia primária</div></div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row"><span class="badge yellow">Investigar causa</span><span class="badge blue">Sem antiarrítmico</span></div>
+      <div class="result-section"><h4>Causas comuns</h4><ul>
+        <li>Hipóxia fetal / sofrimento fetal</li>
+        <li>Febre materna / infecção (CMV, toxoplasmose)</li>
+        <li>Doença de Graves (hipertireoidismo materno)</li>
+        <li>Medicações: beta-miméticos (ritodrina, terbutalina)</li>
+        <li>Miocardite fetal</li>
+        <li>Cromossomopatia (no 1º trimestre: FC &gt; 170 bpm)</li>
+      </ul></div>
+      <div class="result-section"><h4>Conduta</h4><ul>
+        <li>Identificar e tratar a causa</li>
+        <li>Se causa identificada e tratada com normalização: alta sem seguimento cardiológico específico</li>
+        <li>Se persistente sem causa: CTG, perfil biofísico, investigação infecciosa</li>
+      </ul></div>
+      <div class="alert-box">
+        <span class="ai">⚠️</span>
+        <span><strong>Taquicardia Sinusal Inapropriada <span class="new-tag">v2.0</span></strong> — Se refratária à digoxina <em>e</em> flecainida sem resposta, considerar esta entidade rara. Início/término graduais; FC 160–200 bpm. Somente o <strong>sotalol</strong> costuma ser eficaz. Diagnóstico confirmado após o parto por ritmologista.</span>
+      </div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<div id="screen-q-tsv-va" class="screen">
+  <button class="btn-back" onclick="go('q-taqi-fc')">← Voltar</button>
+  <div class="q-card">
+    <span class="q-tag">⚡ TSV · Passo 3 — Mecanismo</span>
+    <div class="q-title">Qual o intervalo VA no Doppler mitral-aórtico?</div>
+    <div class="q-hint"><strong>Como medir:</strong> No Doppler mitral-aórtico, o intervalo VA vai do final do fluxo aórtico até o início da próxima onda A mitral. Compare com o intervalo AV (início onda A → início fluxo aórtico).</div>
+    <div class="options">
+      <div class="option" onclick="go('q-tsv-sustentada')">
+        <span class="opt-icon">⚡</span>
+        <div class="opt-text"><span class="opt-label">VA CURTO — VA &lt; AV</span><span class="opt-sub">Condução retrógrada rápida pela via acessória</span></div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('q-va-longo')">
+        <span class="opt-icon">🐢</span>
+        <div class="opt-text"><span class="opt-label">VA LONGO — VA &gt; AV</span><span class="opt-sub">Foco ectópico ou juncional — início gradual ("warm-up")</span></div><span class="opt-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="screen-q-tsv-sustentada" class="screen">
+  <button class="btn-back" onclick="go('q-tsv-va')">← Voltar</button>
+  <div class="q-card">
+    <span class="q-tag">⚡ TSV TRAV · Passo 4 — Urgência</span>
+    <div class="q-title">A taquicardia é sustentada ou intermitente?</div>
+    <div class="q-hint"><strong>Definição:</strong> Sustentada = presente em &gt; 50% do tempo de exame (observe por mínimo 30 minutos). Intermitente = presente em 10–50% do tempo.</div>
+    <div class="options">
+      <div class="option" onclick="go('q-tsv-hidro')">
+        <span class="opt-icon">🔴</span>
+        <div class="opt-text"><span class="opt-label">SUSTENTADA — presente &gt; 50% do exame</span><span class="opt-sub">Risco de hidropisia em 24–48h</span></div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('r-tsv-intermitente')">
+        <span class="opt-icon">🟡</span>
+        <div class="opt-text"><span class="opt-label">INTERMITENTE — presente &lt; 50% do exame</span><span class="opt-sub">Monitorar de perto — pode tornar-se sustentada</span></div><span class="opt-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="screen-q-tsv-hidro" class="screen">
+  <button class="btn-back" onclick="go('q-tsv-sustentada')">← Voltar</button>
+  <div class="q-card">
+    <span class="q-tag">⚡ TSV Sustentada · Passo 5</span>
+    <div class="q-title">Há sinais de hidropisia ou disfunção ventricular?</div>
+    <div class="options">
+      <div class="option" onclick="go('r-tsv-sem-hidro')">
+        <span class="opt-icon">🟡</span>
+        <div class="opt-text"><span class="opt-label">SEM hidropisia, função preservada</span><span class="opt-sub">Tratar — risco de hidropisia em horas</span></div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('r-tsv-com-hidro')">
+        <span class="opt-icon">🔴</span>
+        <div class="opt-text"><span class="opt-label">COM hidropisia e/ou disfunção ventricular</span><span class="opt-sub">Emergência — transferência placentária de digoxina comprometida</span></div><span class="opt-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="screen-r-tsv-intermitente" class="screen">
+  <button class="btn-back" onclick="go('q-tsv-sustentada')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header yellow">
+      <span class="result-icon">⚡</span>
+      <div><div class="result-diagnosis">TSV Intermitente por TRAV</div><div class="result-sub">VA curto, &lt; 50% do tempo, sem hidropisia</div></div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row"><span class="badge yellow">Observação rigorosa</span><span class="badge blue">ECO 48–72h</span></div>
+      <div class="result-section"><h4>Conduta</h4><ul>
+        <li>ECO de retorno em 48–72 horas</li>
+        <li>Sonar diário pelo obstetra ou pela paciente</li>
+        <li>Orientar a gestante: redução de movimentos = urgência imediata</li>
+        <li>Se tornar-se sustentada: internação e tratamento</li>
+        <li>Se ≥ 34 semanas: discutir parto eletivo vs tratamento</li>
+      </ul></div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<div id="screen-r-tsv-sem-hidro" class="screen">
+  <button class="btn-back" onclick="go('q-tsv-hidro')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header red">
+      <span class="result-icon">💊</span>
+      <div><div class="result-diagnosis">TSV Sustentada por TRAV — Sem Hidropisia</div><div class="result-sub">INTERNAÇÃO + Tratamento transplacentário imediato</div></div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row"><span class="badge red">Internação</span><span class="badge yellow">Tratar</span></div>
+      <div class="result-section"><h4>Tratamento (esquema DSA)</h4><ul>
+        <li><strong>1ª linha — Digoxina:</strong> Ataque "esquema 6/5/4" (1,5/1,25/1,0 mg divididos 12/12h) → manutenção 0,50 mg/dia. Nível sérico alvo: 1,5–2,0 ng/mL. Falha após 5–7 dias → partir para sotalol</li>
+        <li><strong>2ª linha — Sotalol:</strong> Iniciar 80 mg 12/12h → aumentar cada 24–48h até 160 mg 12/12h. Monitorar QTc materno diariamente</li>
+        <li><strong>3ª linha — Amiodarona:</strong> Apenas em casos refratários a digoxina + sotalol</li>
+        <li><strong>Contraindicados:</strong> Verapamil (classe III), procainamida</li>
+      </ul></div>
+      <div class="alert-box"><span class="ai">⚠️</span><span>Monitorar digoxinemia e ECG materno diariamente durante ataque. Vômito em jato = sinal de intoxicação digitálica → reduzir dose pela metade.</span></div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<div id="screen-r-tsv-com-hidro" class="screen">
+  <button class="btn-back" onclick="go('q-tsv-hidro')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header red">
+      <span class="result-icon">🚨</span>
+      <div><div class="result-diagnosis">TSV Sustentada + HIDROPISIA — EMERGÊNCIA</div><div class="result-sub">Transferência placentária de digoxina comprometida — terapia combinada</div></div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row"><span class="badge red">Internação urgente</span><span class="badge red">Centro terciário</span></div>
+      <div class="result-section"><h4>Tratamento</h4><ul>
+        <li><strong>Sotalol + Digoxina desde o início</strong> (não esperar falha da digoxina isolada)</li>
+        <li>Hidropisia reduz transferência placentária da digoxina em até 50%</li>
+        <li>Se refratária a 48–72h: terapia fetal direta por cordocentese (digital IM 0,03 mg/kg ou amiodarona 15 mg/kg peso fetal)</li>
+        <li>Se ≥ 34 semanas + refratária + Score Huhta &lt; 5: discutir parto + cardioversão neonatal</li>
+      </ul></div>
+      <div class="alert-box"><span class="ai">🚨</span><span>Score de Huhta &lt; 7 = risco alto de óbito. Score &lt; 5 = urgência máxima para parto se ≥ 34 semanas.</span></div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<!-- q-va-longo: novo diferencial TAE vs JET -->
+<div id="screen-q-va-longo" class="screen">
+  <button class="btn-back" onclick="go('q-tsv-va')">← Voltar</button>
+  <div class="q-card">
+    <span class="q-tag">🟡 VA Longo · Passo 4 — Novo v2.0</span>
+    <div class="q-title">A frequência ventricular é maior ou menor que a atrial?</div>
+    <div class="q-hint">
+      <strong>Chave diagnóstica:</strong> No VA longo, o passo seguinte é verificar a relação entre FC atrial e FC ventricular. Se V &gt; A: é JET (o ventrículo lidera). Se A = V: é TAE (o átrio lidera).
+    </div>
+    <div class="options">
+      <div class="option" onclick="go('r-tae')">
+        <span class="opt-icon">🐢</span>
+        <div class="opt-text">
+          <span class="opt-label">FC atrial = FC ventricular (A:V 1:1)</span>
+          <span class="opt-sub">O átrio conduz ao ventrículo — foco atrial ectópico (TAE)</span>
+        </div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('r-jet')">
+        <span class="opt-icon">⚡</span>
+        <div class="opt-text">
+          <span class="opt-label">FC ventricular &gt; FC atrial — dissociação AV <span class="new-tag">novo</span></span>
+          <span class="opt-sub">O ventrículo é mais rápido — JET (Taquicardia Juncional Ectópica)</span>
+        </div><span class="opt-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- r-jet: novo diagnóstico -->
+<div id="screen-r-jet" class="screen">
+  <button class="btn-back" onclick="go('q-va-longo')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header red">
+      <span class="result-icon">⚡</span>
+      <div>
+        <div class="result-diagnosis">Taquicardia Juncional Ectópica (JET) <span class="new-tag">novo v2.0</span></div>
+        <div class="result-sub">V &gt; A + VA longo — automaticidade do nó AV ou feixe de His</div>
+      </div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row">
+        <span class="badge red">Urgente</span>
+        <span class="badge yellow">Flecainida 1ª linha</span>
+        <span class="badge blue">Centro terciário</span>
+      </div>
+      <div class="result-section">
+        <h4>Por que é diferente da TV e do BAVT?</h4>
+        <ul>
+          <li><strong>vs BAVT:</strong> No JET a frequência ventricular é <em>maior</em> que a atrial; no BAVT é <em>menor</em></li>
+          <li><strong>vs TV:</strong> A frequência no JET (160–220 bpm) tende a ser menor que na TV (180–300 bpm); mecanismo diferente</li>
+          <li><strong>vs TAE:</strong> No JET há dissociação AV (V&gt;A); na TAE há condução 1:1 (A=V)</li>
+        </ul>
+      </div>
+      <div class="result-section">
+        <h4>Características diagnósticas</h4>
+        <ul>
+          <li>FC ventricular: 160–220 bpm; FC atrial: menor (ritmo sinusal independente)</li>
+          <li>Dissociação AV com V > A</li>
+          <li>VA longo — o nó AV/His comanda</li>
+          <li>Início gradual; geralmente persistente</li>
+          <li>Associada a: BAVT, miocardite, tumores cardíacos</li>
+        </ul>
+      </div>
+      <div class="result-section">
+        <h4>Tratamento</h4>
+        <ul>
+          <li><strong>1ª linha: Flecainida</strong> (não disponível no Brasil; importação disponível)</li>
+          <li><strong>Alternativa: Sotalol + Amiodarona</strong></li>
+          <li>Digoxina isolada: resposta pobre — evitar como monoterapia</li>
+          <li>Encaminhar imediatamente para centro terciário de cardiologia fetal</li>
+        </ul>
+      </div>
+      <div class="alert-box">
+        <span class="ai">🚨</span>
+        <span><strong>Não confundir JET com BAVT:</strong> O erro é crítico — no BAVT o ventrículo é lento; no JET o ventrículo é rápido. A direção da dissociação (V &gt; A vs A &gt; V) resolve o diagnóstico.</span>
+      </div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<div id="screen-r-tae" class="screen">
+  <button class="btn-back" onclick="go('q-va-longo')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header red">
+      <span class="result-icon">🐢</span>
+      <div><div class="result-diagnosis">Taquicardia Atrial Ectópica (TAE)</div><div class="result-sub">VA longo — foco automático, frequentemente incessante</div></div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row"><span class="badge red">Difícil tratamento</span><span class="badge yellow">Sotalol 1ª linha</span></div>
+      <div class="result-section"><h4>Características</h4><ul>
+        <li>VA &gt; AV — foco ectópico atrial (não via acessória)</li>
+        <li>Início e término GRADUAIS ("warm-up phenomenon")</li>
+        <li>Frequentemente INCESSANTE — pior resposta à digoxina</li>
+        <li>Risco de cardiomiopatia taquicardia-induzida</li>
+      </ul></div>
+      <div class="result-section"><h4>Tratamento</h4><ul>
+        <li><strong>1ª linha: Sotalol</strong> (melhor resposta que digoxina na TAE)</li>
+        <li>Se falha: amiodarona</li>
+        <li>Encaminhar para centro terciário — evidência limitada</li>
+      </ul></div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<!-- Flutter -->
+<div id="screen-q-flutter" class="screen">
+  <button class="btn-back" onclick="go('q-taqi-fc')">← Voltar</button>
+  <div class="q-card">
+    <span class="q-tag">〰️ Flutter Atrial · Passo 3</span>
+    <div class="q-title">Há hidropisia ou disfunção ventricular?</div>
+    <div class="options">
+      <div class="option" onclick="go('r-flutter-sem-hidro')">
+        <span class="opt-icon">🟡</span>
+        <div class="opt-text"><span class="opt-label">Sem hidropisia, função preservada</span><span class="opt-sub">Flutter sustentado — tratar com internação</span></div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('r-flutter-hidro')">
+        <span class="opt-icon">🔴</span>
+        <div class="opt-text"><span class="opt-label">Com hidropisia e/ou disfunção</span><span class="opt-sub">Emergência — terapia combinada</span></div><span class="opt-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="screen-r-flutter-sem-hidro" class="screen">
+  <button class="btn-back" onclick="go('q-flutter')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header red">
+      <span class="result-icon">〰️</span>
+      <div><div class="result-diagnosis">Flutter Atrial Fetal</div><div class="result-sub">FC atrial 300–500 bpm, bloqueio AV variável — arritmia maligna</div></div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row"><span class="badge red">Internação</span><span class="badge yellow">Sotalol 1ª linha</span><span class="badge blue">Tende a recorrer</span></div>
+      <div class="result-section"><h4>Tratamento</h4><ul>
+        <li><strong>1ª linha: Sotalol</strong> 160–480 mg/dia VO — taxa de reversão 50–80%</li>
+        <li><strong>Alternativa: Digoxina</strong> — aumenta o bloqueio AV e reduz resposta ventricular</li>
+        <li>Monitorar QTc materno diariamente (suspender sotalol se QTc ≥ 0,48 s)</li>
+        <li><strong>3ª linha: Amiodarona</strong> (IIb/B) — apenas se refratário</li>
+        <li>Após o nascimento: cardioversão elétrica sincronizada</li>
+      </ul></div>
+      <div class="alert-box"><span class="ai">⚠️</span><span><strong>Flutter é maligno e tende a recorrer.</strong> Informar sempre o neonatologista antes do parto. Após cardioversão pós-natal, o flutter raramente recorre — não manter antiarrítmico cronicamente como regra.</span></div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<div id="screen-r-flutter-hidro" class="screen">
+  <button class="btn-back" onclick="go('q-flutter')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header red">
+      <span class="result-icon">🚨</span>
+      <div><div class="result-diagnosis">Flutter Atrial + HIDROPISIA — EMERGÊNCIA</div><div class="result-sub">Terapia combinada imediata — centro terciário</div></div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row"><span class="badge red">Emergência</span><span class="badge red">Centro terciário</span></div>
+      <div class="result-section"><h4>Tratamento</h4><ul>
+        <li>Sotalol + Digoxina desde o início (terapia combinada)</li>
+        <li>Se ≥ 34 semanas + refratário: cesárea eletiva + cardioversão neonatal</li>
+        <li>Se &lt; 34 semanas + refratário: amiodarona; discutir terapia direta fetal</li>
+      </ul></div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<!-- TV / JET -->
+<div id="screen-q-tv-jt" class="screen">
+  <button class="btn-back" onclick="go('q-taqi-fc')">← Voltar</button>
+  <div class="q-card">
+    <span class="q-tag">🔴 TV/JET · Passo 3</span>
+    <div class="q-title">Qual a frequência ventricular e há TV alternando com bradicardia?</div>
+    <div class="options">
+      <div class="option" onclick="go('r-tv-sqtl')">
+        <span class="opt-icon">⚡</span>
+        <div class="opt-text"><span class="opt-label">TV alternando com BRADICARDIA sinusal</span><span class="opt-sub">Padrão de torsades — SQTL até prova em contrário</span></div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('r-tv-comum')">
+        <span class="opt-icon">🔴</span>
+        <div class="opt-text"><span class="opt-label">TV sustentada FC &gt; 200 bpm, sem bradicardia alternante</span><span class="opt-sub">TV sem padrão de SQTL</span></div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('r-jet')">
+        <span class="opt-icon">🟠</span>
+        <div class="opt-text"><span class="opt-label">Dissociação AV, FC ventricular 160–220 bpm</span><span class="opt-sub">JET — taquicardia juncional ectópica</span></div><span class="opt-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="screen-r-tv-sqtl" class="screen">
+  <button class="btn-back" onclick="go('q-tv-jt')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header red">
+      <span class="result-icon">🚨</span>
+      <div><div class="result-diagnosis">Taquicardia Ventricular — SQTL Suspeito</div><div class="result-sub">TV + bradicardia alternada = síndrome do QT longo até prova em contrário</div></div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row"><span class="badge red">Emergência</span><span class="badge red">EVITAR amiodarona/sotalol</span></div>
+      <div class="result-section"><h4>Tratamento</h4><ul>
+        <li><strong>1ª linha: Magnésio EV materno</strong> — 2–6 g EV em 20 min + 1–2 g/hora (máx. 48h)</li>
+        <li>Monitorar reflexo patelar e nível sérico (&lt; 6 mEq/L)</li>
+        <li><strong>Propranolol VO</strong> como coadjuvante (bloqueia o gatilho adrenérgico)</li>
+        <li><strong>NUNCA: amiodarona, sotalol, flecainida</strong> — prolongam QT e podem desencadear torsades fatal</li>
+        <li>Investigar história familiar urgente (SQTL, morte súbita, síncope)</li>
+        <li>Parto em hospital terciário com ECG neonatal imediato</li>
+      </ul></div>
+      <div class="alert-box"><span class="ai">🚨</span><span><strong>REGRA ABSOLUTA:</strong> TV + bradicardia alternada = SQTL. Magnésio é a única droga segura. Amiodarona nessa situação pode ser fatal.</span></div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<div id="screen-r-tv-comum" class="screen">
+  <button class="btn-back" onclick="go('q-tv-jt')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header red">
+      <span class="result-icon">🔴</span>
+      <div><div class="result-diagnosis">Taquicardia Ventricular Fetal</div><div class="result-sub">Dissociação AV, FC ventricular &gt; 200 bpm</div></div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row"><span class="badge red">Internação urgente</span><span class="badge red">Centro terciário</span></div>
+      <div class="result-section"><h4>Tratamento</h4><ul>
+        <li>Magnésio EV materno (iniciar sempre)</li>
+        <li>Lidocaína EV: 1–1,5 mg/kg + infusão 1–4 mg/min</li>
+        <li>Propranolol VO ou mexiletina VO</li>
+        <li>Sotalol (2ª linha) — se SQTL excluído</li>
+        <li>Se miocardite ou autoanticorpos: dexametasona + IVIG</li>
+      </ul></div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<!-- r-jet screen is defined above (before r-tae) — accessible from both q-va-longo and q-tv-jt -->
+
+
+
+<!-- ══════════════════════════════════════════════
+     PATOLOGIA MATERNA
+══════════════════════════════════════════════ -->
+<div id="screen-s-materna" class="screen">
+  <button class="btn-back" onclick="goHome()">← Voltar</button>
+  <div class="q-card">
+    <span class="q-tag">🩺 Patologia Materna</span>
+    <div class="q-title">Qual a condição materna relevante?</div>
+    <div class="options">
+      <div class="option" onclick="go('r-mat-lupus')">
+        <span class="opt-icon">🔬</span>
+        <div class="opt-text"><span class="opt-label">LES, Síndrome de Sjögren ou anti-Ro/La positivos</span><span class="opt-sub">Risco de BAV autoimune fetal</span></div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('r-mat-diabetes')">
+        <span class="opt-icon">🩸</span>
+        <div class="opt-text"><span class="opt-label">Diabetes melito (pré-gestacional)</span><span class="opt-sub">Risco de cardiopatia estrutural e arritmias</span></div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('r-mat-graves')">
+        <span class="opt-icon">🦋</span>
+        <div class="opt-text"><span class="opt-label">Hipertireoidismo / Doença de Graves</span><span class="opt-sub">Anticorpos TSI podem causar taquicardia fetal</span></div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('r-mat-sqtl')">
+        <span class="opt-icon">❤️</span>
+        <div class="opt-text"><span class="opt-label">História familiar de SQTL, morte súbita ou síncope</span><span class="opt-sub">Risco de canalopatia fetal</span></div><span class="opt-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="screen-r-mat-lupus" class="screen">
+  <button class="btn-back" onclick="go('s-materna')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header red">
+      <span class="result-icon">🔬</span>
+      <div><div class="result-diagnosis">Risco de BAV Autoimune Fetal</div><div class="result-sub">Anti-Ro/La+ — protocolo de monitoramento 18–26 semanas</div></div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row"><span class="badge red">Alto risco (5%)</span><span class="badge yellow">Monitorar PR</span></div>
+      <div class="result-section"><h4>Protocolo obrigatório</h4><ul>
+        <li>ECO fetal a partir de 16–18 semanas</li>
+        <li>Medida do PR mecânico (Doppler mitral-aórtico) SEMANALMENTE entre 18–26 semanas</li>
+        <li>Após 26 semanas: controle a cada 4 semanas até o nascimento</li>
+        <li>Se PR aumentando progressivamente: intensificar seguimento + discutir dexametasona em centro especializado</li>
+        <li>Janela de intervenção após instalação do BAV 1º grau: &lt; 24 horas</li>
+      </ul></div>
+      <div class="alert-box"><span class="ai">🚨</span><span>5% das mães anti-Ro+ terão fetos com BAV. O anti-Ro destrói o nó sinoatrial por processo inflamatório. O monitoramento semanal é mandatório nesse período.</span></div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<div id="screen-r-mat-diabetes" class="screen">
+  <button class="btn-back" onclick="go('s-materna')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header yellow">
+      <span class="result-icon">🩸</span>
+      <div><div class="result-diagnosis">Diabetes Materno Pré-Gestacional</div><div class="result-sub">Indicação de ecocardiografia fetal + vigilância</div></div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row"><span class="badge yellow">Risco ≥ 2%</span><span class="badge blue">ECO indicado</span></div>
+      <div class="result-section"><h4>Riscos associados</h4><ul>
+        <li>Cardiopatia estrutural (risco ≥ 2% — indicação classe I/A para ECO)</li>
+        <li>Cardiomiopatia hipertrófica fetal</li>
+        <li>Taquicardia sinusal (hipóxia crônica)</li>
+      </ul></div>
+      <div class="result-section"><h4>Conduta</h4><ul>
+        <li>Ecocardiografia fetal completa a partir de 20 semanas (Classe I/A)</li>
+        <li>Controle glicêmico rigoroso materno</li>
+        <li>Se HbA1c &lt; 6% e diabetes gestacional: risco ≤ 1% (Classe III/B — ECO não obrigatório)</li>
+      </ul></div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<div id="screen-r-mat-graves" class="screen">
+  <button class="btn-back" onclick="go('s-materna')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header yellow">
+      <span class="result-icon">🦋</span>
+      <div><div class="result-diagnosis">Hipertireoidismo Materno / Doença de Graves</div><div class="result-sub">Anticorpos TSI atravessam a placenta — taquicardia fetal</div></div>
+    </div>
+    <div class="result-body">
+      <div class="result-section"><h4>Mecanismo</h4><ul>
+        <li>Anticorpos estimuladores do TSH (TSI) atravessam a placenta</li>
+        <li>Estimulam o receptor de TSH fetal → hipertireoidismo fetal → taquicardia sinusal</li>
+        <li>FC geralmente 160–200 bpm, gradual, A=V 1:1</li>
+      </ul></div>
+      <div class="result-section"><h4>Conduta</h4><ul>
+        <li>Tratar hipertireoidismo materno (propiltiouracil ou metimazol)</li>
+        <li>Monitorar FC fetal e função tireoidiana fetal</li>
+        <li>Taquicardia resolve com controle do hipertireoidismo materno</li>
+      </ul></div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<div id="screen-r-mat-sqtl" class="screen">
+  <button class="btn-back" onclick="go('s-materna')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header red">
+      <span class="result-icon">❤️</span>
+      <div><div class="result-diagnosis">Risco de SQTL Fetal</div><div class="result-sub">História familiar positiva — canalopatia hereditária</div></div>
+    </div>
+    <div class="result-body">
+      <div class="result-section"><h4>Investigação</h4><ul>
+        <li>ECG dos pais (QTc &gt; 480 ms = suspeita confirmada)</li>
+        <li>Teste genético materno (KCNQ1, KCNH2, SCN5A) se disponível</li>
+        <li>ECO fetal: pesquisar bradicardia sinusal, TV polimórfica alternante com bradicardia</li>
+        <li>Magnetocardiografia fetal (MCGf) se disponível — único método para medir QT fetal</li>
+      </ul></div>
+      <div class="result-section"><h4>Conduta no parto</h4><ul>
+        <li>Parto em hospital terciário com cardiologia pediátrica presente</li>
+        <li>ECG neonatal imediato ao nascimento</li>
+        <li>Se QTc neonatal &gt; 480 ms: diagnóstico confirmado → propranolol VO</li>
+      </ul></div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     PATOLOGIA FETAL
+══════════════════════════════════════════════ -->
+<div id="screen-s-fetal" class="screen">
+  <button class="btn-back" onclick="goHome()">← Voltar</button>
+  <div class="q-card">
+    <span class="q-tag">🤰 Patologia Obstétrica/Fetal</span>
+    <div class="q-title">Qual a condição fetal/obstétrica associada?</div>
+    <div class="options">
+      <div class="option" onclick="go('r-fet-hidro')">
+        <span class="opt-icon">💧</span>
+        <div class="opt-text"><span class="opt-label">Hidropisia fetal não imune</span><span class="opt-sub">Derrame pericárdico, pleural, ascite, edema</span></div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('r-fet-tumor')">
+        <span class="opt-icon">🫀</span>
+        <div class="opt-text"><span class="opt-label">Tumor cardíaco fetal (rabdomioma)</span><span class="opt-sub">Associação com taquiarritmias e obstrução</span></div><span class="opt-arrow">→</span>
+      </div>
+      <div class="option" onclick="go('r-fet-infec')">
+        <span class="opt-icon">🦠</span>
+        <div class="opt-text"><span class="opt-label">Infecção fetal (CMV, parvovírus, rubéola)</span><span class="opt-sub">Miocardite fetal — taquicardia ou bradicardia</span></div><span class="opt-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="screen-r-fet-hidro" class="screen">
+  <button class="btn-back" onclick="go('s-fetal')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header red">
+      <span class="result-icon">💧</span>
+      <div><div class="result-diagnosis">Hidropisia Fetal + Arritmia</div><div class="result-sub">Investigar causa da arritmia — emergência hemodinâmica</div></div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row"><span class="badge red">Emergência</span></div>
+      <div class="result-section"><h4>Critérios de hidropisia (≥ 2 dos seguintes)</h4><ul>
+        <li>Derrame pericárdico</li><li>Derrame pleural</li><li>Ascite</li><li>Edema subcutâneo ≥ 5 mm</li>
+      </ul></div>
+      <div class="result-section"><h4>Arritmias que causam hidropisia</h4><ul>
+        <li>TSV sustentada (24–48h pode ser suficiente)</li>
+        <li>Flutter atrial sustentado</li>
+        <li>BAVT com FC &lt; 50 bpm</li>
+        <li>TV sustentada</li>
+      </ul></div>
+      <div class="result-section"><h4>Impacto no tratamento</h4><ul>
+        <li>Digoxina isolada: transferência muito reduzida pela placenta comprometida</li>
+        <li>Usar terapia combinada desde o início (sotalol + digoxina)</li>
+        <li>Score Huhta &lt; 7: risco alto de óbito fetal</li>
+        <li>Encaminhar para centro terciário imediatamente</li>
+      </ul></div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<div id="screen-r-fet-tumor" class="screen">
+  <button class="btn-back" onclick="go('s-fetal')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header yellow">
+      <span class="result-icon">🫀</span>
+      <div><div class="result-diagnosis">Tumor Cardíaco Fetal</div><div class="result-sub">Rabdomioma — associação com TSV e obstrução</div></div>
+    </div>
+    <div class="result-body">
+      <div class="result-section"><h4>Características</h4><ul>
+        <li>Rabdomioma: tumor cardíaco fetal mais comum</li>
+        <li>Associação com esclerose tuberosa (complexo ETC1/ETC2)</li>
+        <li>Pode causar TSV, obstrução de vias de saída, ESV frequentes</li>
+        <li>ECO seriado pelo risco de crescimento progressivo</li>
+      </ul></div>
+      <div class="result-section"><h4>Conduta</h4><ul>
+        <li>ECO a cada 2–4 semanas</li>
+        <li>Se arritmia: tratar conforme tipo (ver vias de TSV/ESV)</li>
+        <li>Investigar esclerose tuberosa materna (lesões cutâneas, angiofibromas)</li>
+        <li>Encaminhar para centro nível 2–3</li>
+      </ul></div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<div id="screen-r-fet-infec" class="screen">
+  <button class="btn-back" onclick="go('s-fetal')">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header yellow">
+      <span class="result-icon">🦠</span>
+      <div><div class="result-diagnosis">Miocardite Fetal por Infecção</div><div class="result-sub">CMV, parvovírus B19, rubéola — taquicardia sinusal + disfunção</div></div>
+    </div>
+    <div class="result-body">
+      <div class="result-section"><h4>Padrão ecocardiográfico</h4><ul>
+        <li>Taquicardia sinusal (hipóxia/inflamação)</li>
+        <li>Disfunção ventricular</li>
+        <li>Derrame pericárdico</li>
+        <li>Hidropisia em casos graves</li>
+      </ul></div>
+      <div class="result-section"><h4>Investigação</h4><ul>
+        <li>IgG/IgM para CMV, parvovírus B19, rubéola, TORCH completo</li>
+        <li>Anti-Ro/La (miocardite autoimune no diferencial)</li>
+        <li>Amniocentese se suspeita forte (PCR viral no líquido)</li>
+      </ul></div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     MEDICAMENTOS
+══════════════════════════════════════════════ -->
+<div id="screen-s-med" class="screen">
+  <button class="btn-back" onclick="goHome()">← Voltar</button>
+  <div class="q-card">
+    <span class="q-tag">💊 Medicamentos</span>
+    <div class="q-title">Medicamentos com potencial de interferência no ritmo fetal</div>
+  </div>
+  <div class="med-grid">
+    <div class="med-card"><h5>AINEs (indometacina, ibuprofeno, dipirona)</h5><p>Constrição ductal fetal. Inibição das prostaglandinas. Evitar no 3º trimestre.</p><span class="risk high">Alto risco ductal</span></div>
+    <div class="med-card"><h5>Betabloqueadores (propranolol, atenolol)</h5><p>Bradicardia fetal. Reduzem FC do nó sinusal. Passagem transplacentária significativa.</p><span class="risk high">Bradicardia</span></div>
+    <div class="med-card"><h5>ISRS (fluoxetina, paroxetina, sertralina)</h5><p>Paroxetina: risco de cardiopatia. Todos: risco de constrição ductal no 3º tri.</p><span class="risk mod">Risco moderado</span></div>
+    <div class="med-card"><h5>Corticoides (dexametasona, betametasona)</h5><p>Constrição ductal (dose-dependente). Efeito sinérgico com AINEs. Monitorar ducto.</p><span class="risk mod">Risco ductal</span></div>
+    <div class="med-card"><h5>Beta-miméticos (terbutalina, ritodrina)</h5><p>Taquicardia sinusal fetal. FC pode chegar a 180–200 bpm. Transitório.</p><span class="risk low">Taqui transitória</span></div>
+    <div class="med-card"><h5>Amiodarona (materna)</h5><p>Bócio fetal (hipotireoidismo). Bradicardia. Comprometimento neurológico. Usar pelo menor tempo possível.</p><span class="risk high">Tóxico fetal</span></div>
+    <div class="med-card"><h5>Digoxina (materna)</h5><p>Bradicardia fetal se toxicidade. Monitorar digoxinemia. Transferência 50–70%.</p><span class="risk low">Monitorar nível</span></div>
+    <div class="med-card"><h5>Sotalol (materno)</h5><p>Prolongamento do QTc fetal. Bradicardia. Suspender se QTc materno ≥ 0,48 s.</p><span class="risk mod">Monitorar QTc</span></div>
+    <div class="med-card"><h5>Antiepiléticos (fenitoína, carbamazepina)</h5><p>Risco de cardiopatia congênita (IIb/A). Indicação de ECO fetal.</p><span class="risk mod">ECO indicado</span></div>
+    <div class="med-card"><h5>Nafazolina / descongestionantes</h5><p>Constrição ductal documentada. Evitar no 3º trimestre.</p><span class="risk high">Constrição ductal</span></div>
+  </div>
+  <div class="info-box" style="margin-top:16px"><span class="ai">ℹ️</span><span>Na suspeita de constrição ductal: suspender o fármaco imediatamente e fazer ECO com Doppler ductal. IP ductal &lt; 2,2 + velocidade sistólica &gt; 1,4 m/s = constrição ductal.</span></div>
+  <button class="btn-restart" onclick="goHome()" style="margin-top:16px">🏠 Início</button>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     DIETA
+══════════════════════════════════════════════ -->
+<div id="screen-s-dieta" class="screen">
+  <button class="btn-back" onclick="goHome()">← Voltar</button>
+  <div class="q-card">
+    <span class="q-tag">🍵 Dieta e Substâncias</span>
+    <div class="q-title">Substâncias dietéticas com impacto no coração fetal</div>
+    <div class="q-hint"><strong>Impacto principal:</strong> Polifenóis (ação anti-inflamatória semelhante a AINEs) e cafeína são as substâncias mais relevantes para o ritmo e o ducto arterial fetal.</div>
+  </div>
+
+  <div class="q-card" style="margin-top:0">
+    <h4 style="color:var(--red);margin-bottom:12px">🚫 Efeito sobre o Ducto Arterial (inibição das prostaglandinas)</h4>
+    <table class="inv-table">
+      <tr><th>Alimento</th><th>Risco</th><th>Orientação no 3º trimestre</th></tr>
+      <tr><td>Chocolate preto/amargo / cacau</td><td><span class="tag" style="background:#fce4e1;color:#922b21">Alto</span></td><td>Evitar completamente</td></tr>
+      <tr><td>Chá verde, chá preto, chá de boldo</td><td><span class="tag" style="background:#fce4e1;color:#922b21">Alto</span></td><td>Evitar completamente</td></tr>
+      <tr><td>Café / chimarrão</td><td><span class="tag" style="background:#fce4e1;color:#922b21">Alto</span></td><td>Evitar no 3º trimestre</td></tr>
+      <tr><td>Azeite de oliva</td><td><span class="tag" style="background:#fce4e1;color:#922b21">Alto</span></td><td>Substituir por óleo de canola</td></tr>
+      <tr><td>Suco / uva preta/vermelha</td><td><span class="tag" style="background:#fce4e1;color:#922b21">Alto</span></td><td>Evitar — usar uva verde</td></tr>
+      <tr><td>Laranja / suco de laranja</td><td><span class="tag" style="background:#fce4e1;color:#922b21">Alto</span></td><td>Substituir por acerola, limão</td></tr>
+      <tr><td>Amora, morango, ameixa</td><td><span class="tag" style="background:#fef9e7;color:#9a7d0a">Mod.</span></td><td>Consumo restrito (porções definidas)</td></tr>
+      <tr><td>Maçã vermelha com casca</td><td><span class="tag" style="background:#fef9e7;color:#9a7d0a">Mod.</span></td><td>Consumir sem casca</td></tr>
+    </table>
+  </div>
+
+  <div class="q-card">
+    <h4 style="color:var(--amber);margin-bottom:12px">⚡ Efeito sobre Extrassístoles e Ritmo</h4>
+    <table class="inv-table">
+      <tr><th>Substância</th><th>Efeito</th><th>Orientação</th></tr>
+      <tr><td>Cafeína (café, chá, energéticos)</td><td>Extrassístoles, taquicardia</td><td>Evitar — especialmente com ESA</td></tr>
+      <tr><td>Energéticos (Red Bull, Monster)</td><td>Taquicardia, extrassístoles</td><td>Contraindicado na gestação</td></tr>
+      <tr><td>Bebidas alcoólicas</td><td>Extrassístoles, arritmias</td><td>Contraindicado na gestação</td></tr>
+      <tr><td>Drogas (cocaína, anfetaminas)</td><td>Taquicardia grave, TV</td><td>Investigar se FC muito elevada</td></tr>
+    </table>
+  </div>
+
+  <div class="info-box"><span class="ai">ℹ️</span><span>A FIGO (2015) recomenda explicitamente: "No terceiro trimestre, as gestantes devem evitar o consumo de alimentos com altas concentrações de polifenóis, pelo seu efeito sobre o fluxo no ducto arterioso, causado pela inibição da síntese de prostaglandinas." O limite seguro é &lt; 125 mg/dia de polifenóis totais (percentil 25).</span></div>
+  <button class="btn-restart" onclick="goHome()" style="margin-top:16px">🏠 Início</button>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     INVENTÁRIO
+══════════════════════════════════════════════ -->
+<div id="screen-s-inventario" class="screen">
+  <button class="btn-back" onclick="goHome()">← Voltar</button>
+  <div class="q-card">
+    <span class="q-tag">📋 Inventário de Achados Ecocardiográficos</span>
+    <div class="q-title">Padrões ecocardiográficos por diagnóstico</div>
+  </div>
+  <div style="overflow-x:auto">
+  <table class="inv-table">
+    <tr>
+      <th>Diagnóstico</th>
+      <th>FC Atrial</th>
+      <th>FC Ventricular</th>
+      <th>Relação A:V</th>
+      <th>Regularidade</th>
+      <th>Intervalo VA</th>
+      <th>A-A Modo M</th>
+      <th>Urgência</th>
+    </tr>
+    <tr><td><strong>Ritmo sinusal normal</strong></td><td>120–180</td><td>Igual</td><td>1:1</td><td>Regular</td><td>Normal</td><td>Igual</td><td><span class="tag" style="background:#d5f5e3;color:#1e8449">Nenhuma</span></td></tr>
+    <tr><td><strong>Bradicardia fisiológica</strong></td><td>&lt;120, transitória</td><td>Igual</td><td>1:1</td><td>Regular</td><td>Normal</td><td>Igual</td><td><span class="tag" style="background:#d5f5e3;color:#1e8449">Nenhuma</span></td></tr>
+    <tr><td><strong>Bradicardia sinusal</strong></td><td>&lt;110, persiste</td><td>Igual</td><td>1:1</td><td>Regular</td><td>Normal</td><td>Igual</td><td><span class="tag" style="background:#fef9e7;color:#9a7d0a">Investigar</span></td></tr>
+    <tr><td><strong>ESA conduzida</strong></td><td>Irregular</td><td>Irregular</td><td>1:1 (com ESA)</td><td>Irregular</td><td>Normal</td><td>Desigual</td><td><span class="tag" style="background:#d5f5e3;color:#1e8449">Baixa</span></td></tr>
+    <tr><td><strong>ESA bloqueada</strong></td><td>Irregular</td><td>Normal</td><td>2:1 (ESA)</td><td>Pausa pura</td><td>N/A</td><td>Desigual</td><td><span class="tag" style="background:#d5f5e3;color:#1e8449">Baixa</span></td></tr>
+    <tr><td><strong>ESV</strong></td><td>Regular</td><td>Irregular</td><td>Variável</td><td>Pausa comp.</td><td>N/A</td><td>Igual</td><td><span class="tag" style="background:#fef9e7;color:#9a7d0a">Vigil.</span></td></tr>
+    <tr><td><strong>Bigeminismo atrial bloc.</strong></td><td>Pareada ~130</td><td>~65–75</td><td>2:1 (pareado)</td><td>Regular-irregular</td><td>N/A</td><td><strong>DESIGUAL</strong></td><td><span class="tag" style="background:#fef9e7;color:#9a7d0a">Vigil.</span></td></tr>
+    <tr><td><strong>BAV 2:1</strong></td><td>~120–150 regular</td><td>~60–75</td><td>2:1</td><td>Regular</td><td>N/A</td><td><strong>IGUAL</strong></td><td><span class="tag" style="background:#fce4e1;color:#922b21">Alta</span></td></tr>
+    <tr><td><strong>BAVT</strong></td><td>~100–150 regular</td><td>~40–60</td><td>Dissociação</td><td>A e V independentes</td><td>N/A</td><td>Igual</td><td><span class="tag" style="background:#fce4e1;color:#922b21">Alta</span></td></tr>
+    <tr><td><strong>Taq. sinusal</strong></td><td>160–200</td><td>Igual</td><td>1:1</td><td>Regular</td><td>Normal</td><td>Igual</td><td><span class="tag" style="background:#fef9e7;color:#9a7d0a">Investigar</span></td></tr>
+    <tr><td><strong>TSV (TRAV)</strong></td><td>220–260</td><td>Igual</td><td>1:1</td><td>Regular</td><td><strong>CURTO</strong></td><td>Igual</td><td><span class="tag" style="background:#fce4e1;color:#922b21">Urgente</span></td></tr>
+    <tr><td><strong>TAE (ectópica)</strong></td><td>180–240</td><td>Igual</td><td>1:1</td><td>Regular</td><td><strong>LONGO</strong></td><td>Igual</td><td><span class="tag" style="background:#fce4e1;color:#922b21">Urgente</span></td></tr>
+    <tr><td><strong>Flutter atrial</strong></td><td>300–500</td><td>100–250</td><td>2:1 / 3:1</td><td>Variável</td><td>N/A</td><td>Igual (rápido)</td><td><span class="tag" style="background:#fce4e1;color:#922b21">Urgente</span></td></tr>
+    <tr><td><strong>TV</strong></td><td>&lt; ventricular</td><td>200–400</td><td>A &lt; V</td><td>Dissociação</td><td>N/A</td><td>Igual</td><td><span class="tag" style="background:#fce4e1;color:#922b21">Emergência</span></td></tr>
+    <tr><td><strong>JET <span class="new-tag">v2.0</span></strong></td><td>&lt; ventricular</td><td>160–220</td><td>A &lt; V</td><td>Dissociação</td><td>Longo (VA&gt;AV)</td><td>Igual</td><td><span class="tag" style="background:#fce4e1;color:#922b21">Urgente</span></td></tr>
+    <tr><td><strong>TAM/Costello <span class="new-tag">v2.0</span></strong></td><td>Irregular/caótica</td><td>Variável</td><td>Variável</td><td>Irregular</td><td>N/A</td><td>Irregular</td><td><span class="tag" style="background:#fce4e1;color:#922b21">Investigar</span></td></tr>
+  </table>
+  </div>
+
+  <div class="q-card" style="margin-top:20px">
+    <h4 style="color:var(--navy);margin-bottom:12px">🔑 Regras Mnemônicas Rápidas <span class="new-tag">atualizado v2.0</span></h4>
+    <div class="result-section"><ul>
+      <li><strong>A-A IGUAL</strong> = BAV 2:1 → <em>anti-Ro urgente</em></li>
+      <li><strong>A-A DESIGUAL (pareado)</strong> = Bigeminismo atrial bloqueado → <em>benigno, observar</em></li>
+      <li><strong>VA CURTO (VA &lt; AV)</strong> = TRAV por via acessória → <em>digoxina 1ª linha</em></li>
+      <li><strong>VA LONGO + A=V</strong> = TAE ectópica → <em>sotalol 1ª linha</em></li>
+      <li><strong>VA LONGO + V&gt;A</strong> = JET → <em>flecainida; NÃO digoxina isolada</em> <span class="new-tag">v2.0</span></li>
+      <li><strong>A &gt; V</strong> = Flutter atrial → <em>sotalol; tende a recorrer; pesquisar Ebstein</em></li>
+      <li><strong>V&gt;A dissociação, FC&gt;200</strong> = TV → <em>magnésio; excluir SQTL</em></li>
+      <li><strong>TV + bradicardia alternada</strong> = SQTL → <em>magnésio, NUNCA amiodarona/sotalol</em></li>
+      <li><strong>TAM (multi-focal irregular)</strong> = pesquisar Síndrome de Costello <span class="new-tag">v2.0</span></li>
+      <li><strong>Anti-SSA/SSB + gestante</strong> = hidroxicloroquina profilática (EULAR 2007) <span class="new-tag">v2.0</span></li>
+    </ul></div>
+  </div>
+  <button class="btn-restart" onclick="goHome()" style="margin-top:8px">🏠 Início</button>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SÍNDROME DE COSTELLO (novo v2.0)
+══════════════════════════════════════════════ -->
+<div id="screen-s-costello" class="screen">
+  <button class="btn-back" onclick="goHome()">← Voltar</button>
+  <div class="result-card">
+    <div class="result-header" style="background:linear-gradient(135deg,#6c3483,#8e44ad)">
+      <span class="result-icon">🧬</span>
+      <div>
+        <div class="result-diagnosis">Síndrome de Costello — Taquicardia Atrial Multifocal <span class="new-tag">novo v2.0</span></div>
+        <div class="result-sub">Rassopatia autossômica dominante (gene HRAS) — associada a TAM fetal</div>
+      </div>
+    </div>
+    <div class="result-body">
+      <div class="badge-row">
+        <span class="badge" style="background:#6c3483;color:white">Genética</span>
+        <span class="badge yellow">Investigar</span>
+        <span class="badge blue">Multidisciplinar</span>
+      </div>
+      <div class="result-section">
+        <h4>Características Fetais e Neonatais</h4>
+        <ul>
+          <li><strong>Taquicardia atrial multifocal (TAM)</strong> — característica da síndrome</li>
+          <li>Polidrâmnio (frequente, pode ser grave)</li>
+          <li>Translucência nucal aumentada no 1º trimestre</li>
+          <li>Anomalias ósseas (nariz achatado, lábios espessos, face característica)</li>
+          <li>Cardiomiopatia hipertrófica</li>
+          <li>Risco aumentado de tumor de Wilms, neuroblastoma (acompanhamento oncológico)</li>
+        </ul>
+      </div>
+      <div class="result-section">
+        <h4>O que é a TAM no Eco Fetal?</h4>
+        <ul>
+          <li>Múltiplos focos ectópicos atriais com frequências diferentes</li>
+          <li>FC atrial variável e irregular, padrão "caótico"</li>
+          <li>Difícil de classificar como TSV pura — cada burst tem morfologia diferente</li>
+          <li>Contraste com TSV por reentrada (FC regular, início/término abruptos)</li>
+        </ul>
+      </div>
+      <div class="result-section">
+        <h4>Conduta e Investigação</h4>
+        <ul>
+          <li>Orientação genética familiar (mutação HRAS — autossômica dominante)</li>
+          <li>Análise genética fetal recomendada</li>
+          <li>Cardiomiopatia hipertrófica: ECO estrutural completo e seriado</li>
+          <li>Controle da TAM: sotalol ou amiodarona (tratamento da taquicardia de base)</li>
+          <li>Parto em centro terciário com genética e cardiologia pediátrica disponíveis</li>
+        </ul>
+      </div>
+      <div class="info-box">
+        <span class="ai">ℹ️</span>
+        <span>A Síndrome de Costello pertence ao grupo das rassopatias — condições causadas por mutações em genes da via RAS/MAPK. Outros membros: Síndrome de Noonan, LEOPARD, Cardio-fácio-cutânea. A TAM é mais característica da Síndrome de Costello dentro desse grupo.</span>
+      </div>
+    </div>
+  </div>
+  <button class="btn-restart" onclick="goHome()">🏠 Novo diagnóstico</button>
+</div>
+
+</main>
+
+<script>
+// ── Navigation ────────────────────────────────────────────────────────────────
+const history = [];
+const progressMap = {
+  'home': 0,
+  'q1': 10,
+  'q-bradi-tipo': 20, 'q-bradi-av': 35, 'q-bradi-sinusal': 50, 'q-bradi-bigem': 60, 'q-bradi-bav21': 60, 'q-bavt': 70,
+  'q-irreg-intro': 20, 'q-irreg-pausa': 40, 'q-irreg-bigem': 40,
+  'q-taqi-fc': 20, 'q-tsv-va': 40, 'q-va-longo': 55, 'q-tsv-sustentada': 55, 'q-tsv-hidro': 70, 'q-flutter': 40, 'q-tv-jt': 40,
+  's-materna': 10, 's-fetal': 10, 's-med': 10, 's-dieta': 10, 's-inventario': 10, 's-costello': 10,
+};
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById('screen-' + id);
+  if (el) {
+    el.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  updateProgress(id);
+  updateBreadcrumb();
+}
+
+function go(id) {
+  history.push(id);
+  showScreen(id);
+}
+
+function goHome() {
+  history.length = 0;
+  showScreen('home');
+}
+
+function updateProgress(id) {
+  const pct = progressMap[id] || (id.startsWith('r-') ? 100 : 50);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  const steps = { 0:'Início', 10:'Contexto', 20:'Triagem', 35:'Análise', 50:'Detalhe', 60:'Diagnóstico', 70:'Conduta', 100:'Resultado' };
+  const label = steps[pct] || 'Em andamento';
+  document.getElementById('step-label').textContent = label;
+}
+
+const screenLabels = {
+  'home': 'Início',
+  'q1': 'Achados Eco',
+  'q-bradi-tipo': 'Bradicardia',
+  'q-bradi-av': 'Relação AV',
+  'q-bradi-sinusal': 'Brad. Sinusal',
+  'q-bradi-bigem': 'Bigeminismo',
+  'q-bradi-bav21': 'BAV 2:1',
+  'q-bavt': 'BAVT',
+  'q-irreg-intro': 'Ritmo Irregular',
+  'q-irreg-pausa': 'Medir Pausa',
+  'q-irreg-bigem': 'A-A Bigem.',
+  'q-taqi-fc': 'Taquicardia',
+  'q-tsv-va': 'Intervalo VA',
+  'q-va-longo': 'VA Longo',
+  'q-tsv-sustentada': 'Sustentada?',
+  'q-tsv-hidro': 'Hidropisia?',
+  'q-flutter': 'Flutter',
+  'q-tv-jt': 'TV / JET',
+  's-materna': 'Pat. Materna',
+  's-fetal': 'Pat. Fetal',
+  's-med': 'Medicamentos',
+  's-dieta': 'Dieta',
+  's-inventario': 'Inventário',
+  's-costello': 'Costello',
+  'r-jet': 'JET',
+};
+
+function updateBreadcrumb() {
+  const bc = document.getElementById('breadcrumb');
+  bc.innerHTML = '<span class="crumb" onclick="goHome()">🏠 Início</span>';
+  history.forEach((id, i) => {
+    const label = screenLabels[id] || id;
+    bc.innerHTML += '<span class="crumb-sep">›</span>';
+    if (i < history.length - 1) {
+      bc.innerHTML += `<span class="crumb" onclick="jumpTo(${i})">${label}</span>`;
+    } else {
+      bc.innerHTML += `<span style="color:var(--text)">${label}</span>`;
+    }
+  });
+}
+
+function jumpTo(idx) {
+  const targetId = history[idx];
+  history.splice(idx + 1);
+  showScreen(targetId);
+}
+
+// Entry points
+function startEco()      { go('q1'); }
+function startMaterna()  { go('s-materna'); }
+function startFetal()    { go('s-fetal'); }
+function startMed()      { go('s-med'); }
+function startDieta()    { go('s-dieta'); }
+function showInventario(){ go('s-inventario'); }
+</script>
+
+<footer style="background:var(--navy);color:rgba(255,255,255,0.6);text-align:center;padding:16px;font-size:11px;font-family:'DM Sans',sans-serif">
+  <strong style="color:rgba(255,255,255,0.85)">Dr. Paulo Cezar de Almeida</strong> · CRM-AL 6150 · RQE 4641 · Ecocardiografia Fetal
+  &nbsp;·&nbsp; <strong style="color:rgba(255,255,255,0.75)">@drpaulocezaralmeida</strong>
+  <br style="margin-bottom:4px">
+  Baseado na Diretriz Brasileira de Cardiologia Fetal – 2019 · Lilian Lopes Cap.16 · Bravo-Valenzuela Cap.24 · EULAR 2007
+  &nbsp;·&nbsp; <strong style="color:#d4ac0d">v2.0</strong>
+  &nbsp;·&nbsp; <em>Uso educacional — não substitui julgamento clínico</em>
+</footer>
+</body>
+</html>
